@@ -9,10 +9,7 @@ RUN yum -y install gcc gcc-c++ make flex bison gperf ruby \
 openssl-devel freetype-devel fontconfig-devel libicu-devel sqlite-devel \
 libpng-devel libjpeg-devel
 RUN rpm -Uvh https://rpm.nodesource.com/pub_4.x/el/7/x86_64/nodesource-release-el7-1.noarch.rpm
-RUN yum install -y nodejs
-RUN yum -y update
-RUN npm install -g grunt-cli
-RUN npm install -g grunt
+
 #added fonts
 RUN yum -y install google-*fonts
 RUN yum -y -q reinstall glibc-common && locale -a
@@ -55,7 +52,7 @@ RUN sed -i \
         ${CATALINA_HOME}/conf/logging.properties
 
 
-COPY node-webshot-master /node-webshot-master
+
 COPY resolv.conf /resolv.conf
 RUN printf "cp -rf /resolv.conf /etc/resolv.conf" >> /etc/rc.local
 RUN chmod +x /etc/rc.local
