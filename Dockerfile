@@ -25,11 +25,11 @@ ENV PATH $PATH:$JAVA_HOME/bin:$CATALINA_HOME/bin:$CATALINA_HOME/scripts
 #RUN wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u101-b13/jdk-8u101-linux-x64.tar.gz"
 
 
-COPY jdk-8u144-linux-x64.tar.gz /root
-RUN cd /root && \
-    tar xzf jdk-8u144-linux-x64.tar.gz && \
-    rm jdk*.tar.gz && \
-    mv jdk* ${JAVA_HOME}
+COPY jdk1.8.0_144/* ${JAVA_HOME}/
+#RUN cd /root && \
+#    tar xzf jdk-8u144-linux-x64.tar.gz && \
+#    rm jdk*.tar.gz && \
+#    mv jdk* ${JAVA_HOME}
 
 
 # Install Tomcat
