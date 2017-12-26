@@ -1,5 +1,5 @@
-FROM centos:latest
-MAINTAINER Jijeesh
+FROM rightctrl/centos
+MAINTAINER RightCtrl <AI@RightCtrl.com>
 
 # Install prepare infrastructure
 RUN yum -y update && \
