@@ -4,7 +4,7 @@
 version: '2'
 services:
   tomcatSnapshot:
-    image: jijeesh/tomcat8:snapshot
+    image: rightctrl/tomcat
     ports:
      - "8080:8080"
     mem_limit: 3052m
