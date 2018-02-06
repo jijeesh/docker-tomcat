@@ -10,6 +10,7 @@ services:
        ADMIN_PASS: "RC123456"
        CERT_PASS: "RC987654"
        TIMEZONE: 'Asia/Tokyo'
+       DNAME: 'CN=www.rightctrl.com, OU=MarketPlace, O=RightCtrl, C=IN'
     ports:
       - "8080:8080"
       - "8443:8443"

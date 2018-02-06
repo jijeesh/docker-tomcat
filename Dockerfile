@@ -21,7 +21,7 @@ RUN chmod +x ${CATALINA_HOME}/bin/*sh
 #ENV TZ=Asia/Tokyo
 #RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN yum -y install epel-release
-RUN yum -y pwgen
+
 
 RUN printf "\n\
 java.util.logging.FileHandler.level = FINE \n\
@@ -36,7 +36,7 @@ RUN sed -i \
         -e 's/^handlers = .*/handlers = java.util.logging.FileHandler, 1catalina.org.apache.juli.AsyncFileHandler, 2localhost.org.apache.juli.AsyncFileHandler, 3manager.org.apache.juli.AsyncFileHandler, 4host-manager.org.apache.juli.AsyncFileHandler, java.util.logging.ConsoleHandler/1' \
         ${CATALINA_HOME}/conf/logging.properties
 
-
+RUN yum -y install pwgen
 
 #COPY resolv.conf /resolv.conf
 #RUN printf "cp -rf /resolv.conf /etc/resolv.conf" >> /etc/rc.local

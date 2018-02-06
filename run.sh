@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 # If not supplied, generate a random password for the admin user.
 export CATALINA_HOME=/opt/tomcat
-export PATH $PATH:$CATALINA_HOME/bin:$CATALINA_HOME/scripts
+export PATH=$PATH:$CATALINA_HOME/bin:$CATALINA_HOME/scripts
 
-TZ= ${TIMEZONE:-'Asia/Kolkata'}
-ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+if [[ -z "$TIMEZONE" ]]; then
+    TIMEZONE='Asia/Kolkata'
+fi
+
+
+ln -snf /usr/share/zoneinfo/$TIMEZONE /etc/localtime && echo $TIMEZONE > /etc/timezone
 
 ADMIN_PASSWORD=${ADMIN_PASS:-$(pwgen -s 12 1)}
 
@@ -47,10 +51,13 @@ echo "========================================================================="
 echo "Using certificate password: $CERT_PASSWORD"
 echo "========================================================================"
 
+if [[ -z "$DNAME" ]]; then
+    DNAME='CN=www.rightctrl.com, OU=MarketPlace, O=RightCtrl, C=IN'
+fi
 # Generate Self-Signed SSL certificate in a new keystore
 keytool -genkey -noprompt \
 -alias selfsigned \
--dname "CN=www.rightctrl.com, OU=MarketPlace, O=RightCtrl, C=IN" \
+-dname "$DNAME" \
 -keyalg RSA \
 -storepass $CERT_PASSWORD \
 -keypass $CERT_PASSWORD \
